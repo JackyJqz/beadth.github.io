@@ -234,8 +234,8 @@ def header():
             }
 
 @retry(stop_max_attempt_number=20, wait_fixed=3)
-def get(url):
-    rep = requests.get(url, verify=False, headers=header())
+def get(url, *args, **kwargs):
+    rep = requests.get(url, verify=False, headers=header(), *args, **kwargs)
     return rep
 
 def write(f,data):

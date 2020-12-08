@@ -2,6 +2,7 @@ import ssl
 import os
 import logging
 import urllib3
+import time
 import yfinance as yf
 from datetime import date
 from retrying import retry
@@ -11,6 +12,7 @@ from pandas_datareader import data as pdr
 
 import config
 from lib import utils
+from lib import xq
 
 
 logger = logging.getLogger(__name__)
@@ -51,6 +53,37 @@ def get_data():
         etf_output(src_data, etf)
     return CU_ALL
 
+
+
+def get_xq():
+    CU_ALL = {}
+    for etf in config.ETF_LIST:
+        logger.info("GET XQ DATA: {}".format(etf))
+        time.sleep(0.3)
+        etd_data = xq.get_kline(etf)
+        symbol_data  =  etd_data['data']['item']
+        symbol_dict = dict()
+        for i in symbol_data:
+            d = time.strftime("%Y-%m-%d",time.localtime(i[0]/1000))
+            tmp = {
+                "Open": i[2],
+                "High": i[3],
+                "Low": i[4],
+                "Close": i[5],
+                "Adj Close": i[5],
+                "Volume": i[1]
+            }
+            symbol_dict[d] = tmp
+            if not CU_ALL.get(d, None):
+                CU_ALL[d] = {etf: tmp}
+            else:
+                CU_ALL[d][etf] = tmp
+                # save data
+        path = os.path.join(config.DATA_US_ETF_DIR, "{}.json".format(etf))
+        utils.write(path, symbol_dict)
+        etf_output(symbol_dict, etf)
+    return CU_ALL
+
 def etf_output(data, etf, day=22):
     _sort = sorted(data.items(),key=lambda x:x[0])
     res = []
@@ -77,14 +110,15 @@ def all_output(data, etf, day=22):
 
 
 def run():
-    new_data = get_data()
-    src_data = utils.read(config.ALL_ETF_DIR)
-    for k,v in new_data.items():
-        if k in src_data: continue
-        logger.info("NEW DATA: {}".format(k))
-        src_data[k]=v
-    utils.write(config.ALL_ETF_DIR, src_data)
-    all_output(src_data, "ALL")
+    new_data = get_xq()
+    # src_data = utils.read(config.ALL_ETF_DIR)
+    # for k,v in new_data.items():
+    #     if k in src_data: continue
+    #     logger.info("NEW DATA: {}".format(k))
+    #     src_data[k]=v
+    logger.info("SAVE ETF  DATA...")
+    utils.write(config.ALL_ETF_DIR, new_data)
+    all_output(new_data, "ALL")
 
 def bin():
     current = utils.now()
@@ -142,3 +176,4 @@ if __name__ == '__main__':
     #     if len(data) < 10:
     #         ret.append(name)
     # print(ret)
+
