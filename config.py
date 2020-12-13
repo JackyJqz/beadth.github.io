@@ -153,6 +153,15 @@ ETF_LIST = [
     'XLU',
 ]
 
+ARK_DATA_URL_LIST = [
+    {'fund':'ARKK', 'url':'https://ark-funds.com/wp-content/fundsiteliterature/csv/ARK_INNOVATION_ETF_ARKK_HOLDINGS.csv'},
+    {'fund':'ARKW','url':'https://ark-funds.com/wp-content/fundsiteliterature/csv/ARK_NEXT_GENERATION_INTERNET_ETF_ARKW_HOLDINGS.csv'}, 
+    {'fund':'ARKQ', 'url':'https://ark-funds.com/wp-content/fundsiteliterature/csv/ARK_AUTONOMOUS_TECHNOLOGY_&_ROBOTICS_ETF_ARKQ_HOLDINGS.csv'},
+    {'fund':'ARKG','url':'https://ark-funds.com/wp-content/fundsiteliterature/csv/ARK_GENOMIC_REVOLUTION_MULTISECTOR_ETF_ARKG_HOLDINGS.csv'},
+    {'fund':'ARKF','url':'https://ark-funds.com/wp-content/fundsiteliterature/csv/ARK_FINTECH_INNOVATION_ETF_ARKF_HOLDINGS.csv'}
+]
+
+
 if __name__ == '__main__':
     # timezone('Asia/Shanghai')
     # print(timezone("us"))

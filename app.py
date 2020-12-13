@@ -14,6 +14,7 @@ from bin import breadth
 from bin import federal_founds_rate
 from bin import us_etf
 from bin import jobless_claims
+from bin import us_etf_ark
 
 logger = logging.getLogger(__name__)
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -62,7 +63,7 @@ def run():
             br = browser()
             market_breadth(br)
 
-            # 经济数据
+            # # 经济数据
             newyorkfed.bin()
             longtermtrends.bin()
             cpi.bin()
@@ -72,6 +73,7 @@ def run():
 
             # etf
             us_etf.bin()
+            us_etf_ark.bin()
 
             breadth.quit_browser(br)
             return 
