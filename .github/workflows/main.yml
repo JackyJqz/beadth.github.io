@@ -54,9 +54,7 @@ jobs:
         run: python3 app.py
 
       - name: Show data files
-        run:  |
-          tree .
-          ls -lrt data/us/etf/ark/
+        run:  tree .
 
       - name: cp to opt
         run:  |
