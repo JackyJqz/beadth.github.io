@@ -72,7 +72,7 @@ jobs:
           author_name: ${{ secrets.WORKFLOW_USERNAME }}
           author_email: ${{ secrets.WORKFLOW_EMAIL }}
           message: "Update"
-          add: "*.json"
+          add: "*.json *.csv"
           ref: sp500 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
