@@ -18,10 +18,10 @@ from lib import utils
 logger = logging.getLogger(__name__)
 ARK_CSV_KEYS = ['date','fund','company','ticker','cusip','shares','market value($)','weight(%)']
 
-def strpdate(str_date, f):
+def strpdate(str_date, f = '%m/%d/%Y'):
     return datetime.strptime(str_date, f).replace(tzinfo=pytz.timezone('America/New_York')).date()
 
-def strfdate(date, f):
+def strfdate(date, f = '%m/%d/%Y'):
     return datetime.strftime(date, f)
 
 def now():
@@ -55,8 +55,8 @@ def download(last_date_str):
 
     df = pd.concat(dfs, sort = False)
     df = astype(df)
-    # 标准格式化python中的日期字符串格式
-    df['date'] = df.apply(lambda item : strfdate(strpdate(item['date'],'%m/%d/%Y'),'%m/%d/%Y'), axis = 1)
+    # 标准格式化日期字符串格式
+    df['date'] = df.apply(lambda item : strfdate(strpdate(item['date'],'%m/%d/%Y')), axis = 1)
     #df.to_csv('./arks/test.csv')
 
     return df
@@ -120,8 +120,8 @@ def build_report(df):
 
     # 从df中获取有效的日期数据，并且对它进行去重以及排序
     dates = list(set(df['date']))
-    dates = [datetime.strptime(item, '%m/%d/%Y').date() for item in (dates)]
-    dates = sorted([datetime.strftime(item, '%m/%d/%Y') for item in (dates)])
+    dates = [strpdate(item).date() for item in (dates)]
+    dates = sorted([strfdate(item) for item in (dates)])
 
     # 创建一个只有最新数据的df，把它作为生成统计数据的基础
     base_df = df[(df['date'] == dates[len(dates)-1])]
@@ -199,7 +199,7 @@ def save_output(df):
         records = []
         for index,row_item in df[df['fund']==ark['fund']].iterrows():
             record = {
-                'date':strfdate(strpdate(row_item['date'],'%m/%d/%Y'),'%Y-%m-%d'),
+                'date':strfdate(strpdate(row_item['date']),'%Y-%m-%d'),
                 'company':row_item['company'], 
                 'ticker':row_item['ticker'], 
                 'shares':row_item['shares'], 
