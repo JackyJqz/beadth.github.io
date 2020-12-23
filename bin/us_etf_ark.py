@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__)
 ARK_CSV_KEYS = ['date','fund','company','ticker','cusip','shares','market value($)','weight(%)']
 
 def strpdate(str_date, f = '%m/%d/%Y'):
-    return datetime.strptime(str_date, f).replace(tzinfo=pytz.timezone('America/New_York')).date()
+    return datetime.strptime(str_date, f).replace(tzinfo=pytz.timezone('America/New_York'))
 
 def strfdate(date, f = '%m/%d/%Y'):
     return datetime.strftime(date, f)
@@ -33,16 +33,22 @@ def get_filepath(file):
 def get_outputfile(file):
     return os.path.join(cf.US_ETF_OUTPUT, 'ark', file)
 
+def save_output_json(ret,filepath):
+    utils.save_ouput(ret, filepath)
+
+def get(url):
+    response = utils.get(url)
+    if response.status_code != 200:
+        raise Exception(f'Request url error: {url}')
+    return io.StringIO(response.text)
 
 def download(last_date_str):
     dfs = []
     for ark in cf.ARK_DATA_URL_LIST:
         logger.info('Download {}'.format(ark['url']))
-        response = utils.get(ark['url'])
-        if response.status_code != 200:
-            raise Exception('Request url error: {}'.format(ark['url']))
+        resp = get(ark['url'])
 
-        df = pd.read_csv(io.StringIO(response.text), header=0)
+        df = pd.read_csv(resp, header=0)
         # 把最后4行无效的数据删除掉
         for i in range(4):
             df.drop(index = len(df)-1, inplace = True)
@@ -57,7 +63,7 @@ def download(last_date_str):
     df = astype(df)
     # 标准格式化日期字符串格式
     df['date'] = df.apply(lambda item : strfdate(strpdate(item['date'],'%m/%d/%Y')), axis = 1)
-    #df.to_csv('./arks/test.csv')
+    #df.to_csv(get_outputfile('test.csv'))
 
     return df
 
@@ -65,7 +71,7 @@ def save(df):
     filepath = get_filepath('ark.csv')
 
     if logger.isEnabledFor(logging.DEBUG) == True:
-        base_df.to_csv(get_filepath('debug_ark_data.csv'))
+        df.to_csv(get_filepath('debug_ark_data.csv'))
         bak_file = get_filepath(f'ark-data-bak-{datetime.strftime(now(),"%Y%m%d%H%M%S")}.csv')
         os.rename(filepath, bak_file)
 
@@ -226,16 +232,16 @@ def save_output(df):
         ret.append(fund)
 
         filepath = get_outputfile('{}.json'.format(ark['fund']))
-        utils.save_ouput(fund, filepath)
-        logger.info(f'save_output to {filepath}')
+        save_output_json(fund, filepath)
+        logger.info(f'save_output_json to {filepath}')
 
     filepath = get_outputfile('ALL.json')
-    utils.save_ouput(ret, filepath)
-    logger.info(f'save_output to {filepath}')
+    save_output_json(ret, filepath)
+    logger.info(f'save_output_json to {filepath}')
 
 def bin():
-    current = utils.now()
-    close_time = utils.now().replace(hour=16, minute=30, second=0)
+    current = now()
+    close_time = now().replace(hour=16, minute=30, second=0)
     if current > close_time:
         df = read()
         df = build_report(df)
