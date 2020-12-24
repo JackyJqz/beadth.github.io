@@ -7,3 +7,4 @@ export const GET_JOBLESS_CLAIMS = 'us/economic/GET_JOBLESS_CLAIMS';
 export const GET_CPI_FEDERAL_FOUNDS_RATE = 'us/economic/GET_CPI_FEDERAL_FOUNDS_RATE';
 export const GET_CPI = 'us/economic/GET_CPI';
 export const GET_FEDERAL_FOUNDS_RATE = 'us/economic/GET_FEDERAL_FOUNDS_RATE';
+export const GET_GLD = 'us/economic/GET_GLD';

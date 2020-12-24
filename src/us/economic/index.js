@@ -10,7 +10,8 @@ import {
   getTreasuryRealRates,
   getJoblessClaims,
   getCPI,
-  getFFR
+  getFFR,
+  getGld,
 } from "./store/actionCreators";
 
 import {Loading} from "../USUI";
@@ -21,7 +22,8 @@ import {
   TreasuryRealRates,
   JoblessClaims,
   CPI,
-  FederalFundsRate
+  FederalFundsRate,
+  GOLD
 } from "./chart";
 
 const { Panel } = Collapse;
@@ -54,6 +56,14 @@ class Economic extends Component{
                   this.props.weiStatus
                     ? <Loading/>
                     : <WeiChart {...this.props}/>
+                }
+              </Panel>
+
+              <Panel header={ <FormattedMessage id='gold_title' /> } key="eco8" >
+                {
+                  this.props.gldStatus
+                    ? <Loading/>
+                    : <GOLD {...this.props}/>
                 }
               </Panel>
               
@@ -101,6 +111,7 @@ class Economic extends Component{
     this.props.getJoblessClaimsDis();
     this.props.getCPIDis();
     this.props.getFFRDis();
+    this.props.getGldDis();
   }
 }
 
@@ -120,6 +131,8 @@ const mapState = (state) => {
     cpiData: state.getIn(['usEconomic', 'cpiData']),
     ffrStatus: state.getIn(['usEconomic', 'ffrStatus']),
     ffrData: state.getIn(['usEconomic', 'ffrData']),
+    gldData: state.getIn(['usEconomic', 'gldData']),
+    gldStatus: state.getIn(['usEconomic', 'gldStatus']),
   }
 };
 
@@ -146,6 +159,9 @@ const mapDispatch = (dispatch) => ({
   },
   getFFRDis(){
     dispatch(getFFR())
+  },
+  getGldDis(){
+    dispatch(getGld())
   }
 })
 

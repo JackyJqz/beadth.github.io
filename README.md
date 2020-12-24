@@ -1,3 +1,10 @@
+# ENV
+- 需要添加开发环境的代理
+
+```text
+yarn add http-proxy-middleware
+```
+
 # TODO
 
 - ~~按钮刷新~~

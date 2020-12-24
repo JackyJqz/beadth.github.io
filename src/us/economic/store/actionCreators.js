@@ -87,6 +87,16 @@ export const ffrFormat = (srcData) => {
   }
 }
 
+export const gldFormat = (srcData) => {
+  var data = JSON.parse(Base64.decode(srcData.data));
+  const dv = new DataSet.DataView().source(data);
+  return {
+    type: constants.GET_GLD,
+    gldStatus: false,
+    gldData: dv,
+  }
+}
+
 export const geNewyorktWei = () => {
   return (dispatch) => {
     axios.get("/api-storage/newyorkfed_wei.json").then((res) => {
@@ -151,6 +161,16 @@ export const getFFR = () => {
   return (dispatch) => {
     axios.get("/api-storage/federal_founds_rate_5.json").then((res) => {
       dispatch(ffrFormat(res.data))
+    }).catch(() => { // ajax request error
+      console.log("error")
+    })
+  }
+}
+
+export const getGld = () => {
+  return (dispatch) => {
+    axios.get("/api-storage/gld.json").then((res) => {
+      dispatch(gldFormat(res.data))
     }).catch(() => { // ajax request error
       console.log("error")
     })

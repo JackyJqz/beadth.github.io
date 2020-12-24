@@ -16,6 +16,8 @@ const defaultState = fromJS({
   cpiData: [],
   ffrStatus: true,
   ffrData: [],
+  gldData: [],
+  gldStatus: true,
 });
 
 const updateSomeHold = (state, action) => {
@@ -69,6 +71,13 @@ const updateFederalRate = (state, action) => {
   })
 }
 
+const updateGLD = (state, action) => {
+  return state.merge({
+    gldStatus: action.gldStatus,
+    gldData: action.gldData,
+  })
+}
+
 // state    整个DOM的数据库
 // action
 // reducer 可以接收state，但是不可以在修改stacurrentCityte
@@ -88,6 +97,8 @@ const reducer = (state = defaultState, action) => {
       return updateCPI(state, action)
     case constants.GET_FEDERAL_FOUNDS_RATE:
       return updateFederalRate(state, action)
+    case constants.GET_GLD:
+      return updateGLD(state, action)
     default:
       return state;
   }

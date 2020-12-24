@@ -21,7 +21,7 @@ const messages = {
     'zh': {
         'year': '年',
         'us_initial_jobless_claims': '初次申请失业金人数（千）',
-        'us_continuious_jobless_claims': '持续申请失业金人数（千）',
+        'us_continuing_jobless_claims': '持续申请失业金人数（千）',
         'fed_open_market_account_holdings': '美联储披露持仓 (十亿）',
         'click_to_copy': '点击复制',
         'us_employment_statistics': '美国失业金数据',
@@ -55,8 +55,11 @@ const messages = {
         'cta_ad': '虚位以待',
         'econ_data': '经济数据',
         'mkt_overall': '市场全景',
-        'wechat': '微信'
-      },
+        'wechat': '微信',
+        'gold_title': '黄金/黄金总资产',
+        'gold': 'GLD 黄金',
+        'gold_holding': 'GLD 黄金总资产 (公吨)',
+    },
     'en': {
         'year': 'YR',
         'click_to_copy': 'Click to copy',
@@ -94,7 +97,10 @@ const messages = {
         'cta_ad': 'Your ad here',
         'econ_data': 'Economic Data',
         'mkt_overall': 'Market Dashboard',
-        'wechat': 'WeChat'
+        'wechat': 'WeChat',
+        'gold_title': 'GOLD and Gold Holding',
+        'gold': 'GLD GOLD',
+        'gold_holding': 'GLD Gold Trust Gold Holding (Metric Tons)',
       }
   };
 

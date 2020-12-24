@@ -94,7 +94,7 @@ export const WeiChart = (props) => {
 
   return (
     <div>
-      <Chart padding={[10, 20, 70, 40]} scale={scale} autoFit height={500} data={props.weiDatalist.rows}>
+      <Chart padding={[10, 10, 10, 10]} scale={scale} autoFit height={500} data={props.weiDatalist.rows}>
         <Line shape="line" position="time*value" color="type" />
         <Tooltip shared showCrosshairs />
         <Slider start={0.8}/>
@@ -209,6 +209,8 @@ export const OliCopperGoldRatio = (props) => {
     <React.Fragment>
       <Chart padding="auto" scale={scale} height={400} data={props.OliCopperGoldRatioData.rows}  autoFit>
         <Tooltip shared showCrosshairs />
+        <Slider start={0.5}/>
+        <Axis name="t" label={null}/>
         <Axis name="copper_gold_ratio" label={null}/>
         <Axis name="interest_rates" label={null}/>
         <Axis name="oil_gold_ratio" label={null}/>
@@ -340,6 +342,42 @@ export const FederalFundsRate = (props) => {
         <Line shape="hv" position="day*value"/>
         <Tooltip shared showCrosshairs />
         <Legend />
+        <Annotation.Text {...CHART_COPYRIGHT}/>
+      </Chart>
+    </React.Fragment>
+  );
+}
+
+export const GOLD = (props) => {
+  const intl = useIntl(); // eslint-disable-line
+
+  const scale = {
+    GLD_Close: {
+      min: 80,
+      max: 200,
+      alias: intl.formatMessage({ id: 'gold' }),
+    },
+    TNAVT: {
+      min: 500,
+      max: 1350,
+      alias: intl.formatMessage({ id: 'gold_holding' }),
+    },
+    Date:{
+      alias: "日期",
+      type: 'timeCat',
+    }
+  }
+
+  return (
+    <React.Fragment>
+      <Chart padding={[10, 10, 10, 10]} scale={scale} height={300} data={props.gldData.rows}  autoFit>
+        <Tooltip shared showCrosshairs />
+        <Slider start={0.5} padding={[10, 20, 30, 30]}/>
+        <Axis name="Date" label={null}/>
+        <Axis name="GLD_Close" label={null}/>
+        <Axis name="TNAVT" label={null}/>
+        <Line position="Date*TNAVT" color={"#FF8C00"}/>
+        <Line position="Date*GLD_Close" color={"#000000"}/>
         <Annotation.Text {...CHART_COPYRIGHT}/>
       </Chart>
     </React.Fragment>
