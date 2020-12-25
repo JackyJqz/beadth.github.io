@@ -49,9 +49,11 @@ export const MarketSomaHoldChart = (props) => {
 
   return (
     <React.Fragment>
-      <Chart padding="auto" scale={scale} height={500} data={props.somaHolDataList.rows} autoFit>
+      <Chart padding={[10, 10, 10, 10]} scale={scale} height={500} data={props.somaHolDataList.rows} autoFit>
         <Tooltip shared showCrosshairs/>
         <Line shape="line" position="asOfDate*value" color="type" />
+        <Legend useHtml={true} />
+        <Annotation.Text {...CHART_COPYRIGHT}/>
       </Chart>
     </React.Fragment>
 
@@ -207,7 +209,7 @@ export const OliCopperGoldRatio = (props) => {
 
   return (
     <React.Fragment>
-      <Chart padding="auto" scale={scale} height={400} data={props.OliCopperGoldRatioData.rows}  autoFit>
+      <Chart padding={[10, 10, 10, 10]} scale={scale} height={400} data={props.OliCopperGoldRatioData.rows}  autoFit>
         <Tooltip shared showCrosshairs />
         <Slider start={0.5}/>
         <Axis name="t" label={null}/>
@@ -218,6 +220,7 @@ export const OliCopperGoldRatio = (props) => {
         <Line position="t*interest_rates" color={"#000000"}/>
         <Line position="t*oil_gold_ratio" color={"#7CFC00"}/>
         <Legend/>
+        <Annotation.Text {...CHART_COPYRIGHT}/>
       </Chart>
     </React.Fragment>
   );
@@ -235,7 +238,7 @@ export const TreasuryRealRates = (props) => {
 
   return (
     <React.Fragment>
-      <Chart padding="auto" height={300} data={props.treasuryRealRatesData.rows}  autoFit>
+      <Chart padding={[10, 10, 10, 30]} height={350} data={props.treasuryRealRatesData.rows}  autoFit>
         <Tooltip shared showCrosshairs />
         {/*<Line shape="smooth" position="Date*value" color="year" />*/}
         <LineAdvance
@@ -249,6 +252,7 @@ export const TreasuryRealRates = (props) => {
             return year === '5 YR' | year === '10 YR'
           }}/>
         <Interaction type='legend-filter' />
+        <Annotation.Text {...CHART_COPYRIGHT}/>
       </Chart>
     </React.Fragment>
   );
@@ -281,7 +285,7 @@ export const JoblessClaims = (props) => {
   }
   return (
     <React.Fragment>
-      <Chart padding="auto" scale={scale} height={500} data={props.joblessClaimsData.rows}  autoFit>
+      <Chart padding={[10, 10, 10, 10]} scale={scale} height={500} data={props.joblessClaimsData.rows}  autoFit>
         <Tooltip shared showCrosshairs />
         <Axis name="initial_revised" title />
         <Axis name="continuing_actual" title />
@@ -293,6 +297,7 @@ export const JoblessClaims = (props) => {
             return ``;
           }}
         />
+        <Annotation.Text {...CHART_COPYRIGHT}/>
       </Chart>
     </React.Fragment>
   );
