@@ -49,7 +49,7 @@ export const MarketSomaHoldChart = (props) => {
 
   return (
     <React.Fragment>
-      <Chart padding={[10, 10, 10, 10]} scale={scale} height={500} data={props.somaHolDataList.rows} autoFit>
+      <Chart padding={[10, 20, 50, 50]} scale={scale} height={500} data={props.somaHolDataList.rows} autoFit>
         <Tooltip shared showCrosshairs/>
         <Line shape="line" position="asOfDate*value" color="type" />
         <Legend useHtml={true} />
@@ -96,7 +96,7 @@ export const WeiChart = (props) => {
 
   return (
     <div>
-      <Chart padding={[10, 10, 10, 10]} scale={scale} autoFit height={500} data={props.weiDatalist.rows}>
+      <Chart padding={[10, 10, 50, 30]} scale={scale} autoFit height={500} data={props.weiDatalist.rows}>
         <Line shape="line" position="time*value" color="type" />
         <Tooltip shared showCrosshairs />
         <Slider start={0.8}/>
@@ -238,7 +238,7 @@ export const TreasuryRealRates = (props) => {
 
   return (
     <React.Fragment>
-      <Chart padding={[10, 10, 10, 30]} height={350} data={props.treasuryRealRatesData.rows}  autoFit>
+      <Chart padding={[10, 10, 70, 30]} height={350} data={props.treasuryRealRatesData.rows}  autoFit>
         <Tooltip shared showCrosshairs />
         {/*<Line shape="smooth" position="Date*value" color="year" />*/}
         <LineAdvance
@@ -285,7 +285,7 @@ export const JoblessClaims = (props) => {
   }
   return (
     <React.Fragment>
-      <Chart padding={[10, 10, 10, 10]} scale={scale} height={500} data={props.joblessClaimsData.rows}  autoFit>
+      <Chart padding={[10, 60, 50, 50]} scale={scale} height={500} data={props.joblessClaimsData.rows}  autoFit>
         <Tooltip shared showCrosshairs />
         <Axis name="initial_revised" title />
         <Axis name="continuing_actual" title />
