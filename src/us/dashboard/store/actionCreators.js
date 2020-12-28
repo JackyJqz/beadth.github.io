@@ -13,6 +13,7 @@ import {
   DATA_SET_ETC_SRC_KEY,
   DATA_SET_BM_REL_KEY,
 } from "../../../constants";
+import DataSet from "@antv/data-set";
 
 
 export const ALLETFormat = (srcData) => {
@@ -73,6 +74,16 @@ export const benchmarkFormat  = (srcData) => {
   }
 };
 
+export const sp500smiFormat = (srcData) => {
+  var data = JSON.parse(Base64.decode(srcData.data));
+  const dv = new DataSet.DataView().source(data);
+  return {
+    type: constants.GET_SP500_SMI,
+    sp500smiStatus: false,
+    sp500smiData: dv,
+  }
+}
+
 export const getBenchmark = () => {
   return (dispatch) => {
     var uri = ETF_URI_PREFIX + DASHBOARD_BM + '.json'
@@ -103,6 +114,17 @@ export const getAllETF = () => {
     }).catch(() => { // ajax request error
       console.log("error")
       getAllETF()
+    })
+  }
+}
+
+export const getsp500smi = () => {
+  return (dispatch) => {
+    axios.get("/api-storage/sp500smi.json").then((res) => {
+      dispatch(sp500smiFormat(res.data))
+    }).catch(() => { // ajax request error
+      console.log("error")
+      getsp500smi()
     })
   }
 }

@@ -11,6 +11,8 @@ const defaultState = fromJS({
   allETFStatus: true,
   allETFDataSet: DATA_SET,
   allETFDataView: [{},],
+  sp500smiStatus: [],
+  sp500smiData: [],
 });
 
 const updateAllETF = (state, action) => {
@@ -31,6 +33,13 @@ const updateBenchmark = (state, action) => {
   })
 }
 
+const updatesp500smi = (state, action) => {
+  return state.merge({
+    sp500smiStatus: action.sp500smiStatus,
+    sp500smiData: action.sp500smiData,
+  })
+}
+
 
 // state    整个DOM的数据库
 // action
@@ -41,6 +50,8 @@ const reducer = (state = defaultState, action) => {
       return updateAllETF(state, action)
     case constants.GET_DASHBOARD_BM:
       return updateBenchmark(state, action)
+    case constants.GET_SP500_SMI:
+      return updatesp500smi(state, action)
     default:
       return state;
   }

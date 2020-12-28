@@ -1,6 +1,5 @@
 import React from 'react';
-import { Collapse, Table ,Tabs} from 'antd';
-// import { View } from '@antv/data-set';
+import { Collapse, Table} from 'antd';
 
 import {
   TinyAreaChart,
@@ -10,7 +9,6 @@ import {calculationOfGains, relOfGains} from "./utils";
 import {DATA_SET, DATA_SET_REL_SUFIX, US_ETF_ALL_MAP, US_ETF_GROUP_ALL_MAP} from "../../constants";
 
 const { Panel } = Collapse;
-const { TabPane } = Tabs;
 
 export const ETFChart = (props) => {
   var valColor = function(data) {
@@ -99,8 +97,6 @@ export const ETFChart = (props) => {
   return (
     <React.Fragment>
       <div className="card-container">
-      <Tabs centered >
-        <TabPane tab="Stock" key="1" >
           <Collapse defaultActiveKey={activeKeyList}>
             {
               US_ETF_GROUP_ALL_MAP.map( (item,index) =>  {
@@ -138,12 +134,6 @@ export const ETFChart = (props) => {
               })
             }
           </Collapse>
-        </TabPane>
-        <TabPane tab="Futures" key="2" disabled>
-        </TabPane>
-        <TabPane tab="Currency" key="3" disabled>
-        </TabPane>
-      </Tabs>
       </div>
     </React.Fragment>
 
@@ -174,4 +164,8 @@ export const ETFItemChart = (props) => {
   return <React.Fragment>
       <TinyAreaChart {...option} />
   </React.Fragment>
+}
+
+export const SDChart = (props) => {
+
 }
