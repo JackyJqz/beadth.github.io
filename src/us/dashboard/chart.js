@@ -77,6 +77,9 @@ export const ETFChart = (props) => {
       title: 'Rel',
       dataIndex: 'rel',
       render: (etf) => {
+        if (etf === 'VTI') {
+          return "BM"
+        }
         return <div>
           <ETFItemChart dataMethod={'rel'} etf={etf}/>
         </div>

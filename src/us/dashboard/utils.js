@@ -49,14 +49,16 @@ export const relOfGains = (src, num) => {
 * 每日相对(BM)收益计算 list
 * */
 export const relItemOfGains = (src) => {
+  // let bm = DATA_SET.getView(DATA_SET_BM_REL_KEY).rows.slice(-20)
   let bm = DATA_SET.getView(DATA_SET_BM_REL_KEY).rows
   var srcItem
   var bmItem
   var _t
+  // console.log(bm, src, '----')
   for (var i=0; i < src.length; i++){
     srcItem = parseFloat(src[i]['Close'])
     bmItem = bm[i]['Close']
-    _t = parseInt(srcItem * 1000) - parseInt(bmItem * 1000)
+    _t = parseInt(srcItem) - parseInt(bmItem)
     src[i]['Close'] = parseFloat( _t)
   }
   return src
@@ -75,9 +77,8 @@ export const cumulativeOfGains = (src) => {
     } else {
       last = src[i]['Close']
       resItem = (last - bm) / bm *100
-      res.push({Date: src[i]['Date'], Close:resItem})
+      res.push({Date: src[i]['Date'], Close:resItem.toFixed(3) * 1000})
     }
-
   }
   return res
 }
