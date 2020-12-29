@@ -1,4 +1,7 @@
 export default {
+  'menu.breadth': 'Breadth',
+  'menu.economy': 'Economy',
+  'menu.market-dashboard': 'Market Dashboard',
   'menu.welcome': 'Welcome',
   'menu.more-blocks': 'More Blocks',
   'menu.home': 'Home',

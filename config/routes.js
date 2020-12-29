@@ -34,10 +34,10 @@ export default [
                 component: './breadth',
               },
               {
-                path: '/welcome',
-                name: 'welcome',
+                path: '/economy',
+                name: 'economy',
                 icon: 'smile',
-                component: './Welcome',
+                component: './breadth',
               },
               {
                 path: '/admin',
@@ -56,9 +56,9 @@ export default [
                 ],
               },
               {
-                name: 'list.table-list',
+                name: 'market-dashboard',
                 icon: 'table',
-                path: '/list',
+                path: '/market-dashboard',
                 component: './ListTableList',
               },
               {

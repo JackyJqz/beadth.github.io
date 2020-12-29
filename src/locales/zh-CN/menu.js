@@ -1,5 +1,7 @@
 export default {
   'menu.breadth': '市场宽度',
+  'menu.economy': '经济数据',
+  'menu.market-dashboard': '市场全景',
   'menu.welcome': '欢迎',
   'menu.more-blocks': '更多区块',
   'menu.home': '首页',
