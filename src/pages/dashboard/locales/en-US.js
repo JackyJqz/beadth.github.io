@@ -1,4 +1,6 @@
 export default {
+  'economic.wei.titles': 'Weekly Economic Index (WEI)',
+  'economic.wei.index': 'Economic Index',
   'dashboard.category.broad-market': 'Broad Market',
   'dashboard.category.factors': 'Factors',
   'dashboard.category.growth-value': 'Growth ot Value',

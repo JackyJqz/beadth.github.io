@@ -3,7 +3,6 @@ import Base64 from 'base-64';
 import DataSet from '@antv/data-set';
 
 import * as constants from "@/constants";
-import * as Gutils from "@/utils/utils";
 
 export function fixedZero(val) {
   return val * 1 < 10 ? `0${val}` : val;

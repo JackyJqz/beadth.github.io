@@ -11,21 +11,7 @@ export const ROUTER_PATH = {
   DASHBOARD:'/dashboard',
 }
 export const CHART_CODE_LIST = ['SPX','COM','CND','CNS','ENE','FIN','HLT','IND','MAT','REI','TEC','UTL']
-export const BREADTH_CODE_CN = {
-  SPX:'标普500',
-  COM:'通讯',
-  CND:'可选消费',
-  ENE:'能源',
-  CNS:'必须品',
-  FIN:'金融',
-  HLT:'生物医疗',
-  IND:'工业',
-  MAT:'材料',
-  REI:'地产',
-  TEC:'科技',
-  UTL:'公共事业',
-  TOTAL:'合计',
-}
+
 export const ALL_CHART_SP500_LIST =  ['SPX','COM','CND','CNS','ENE','FIN','HLT','IND','MAT','REI','TEC','UTL','TOTAL']
 export const PAYPAL_URL = 'https://www.paypal.me/kenteb';
 export const IS_LOADING_STRING = "Loading.."
@@ -57,17 +43,7 @@ export const CHART_COPYRIGHT = {
     fontSize: 20,
   },
 }
-export const FED_SOMA_KEY_MAP = {
-  mbs: "Agency Mortgage-Backed Securities",
-  cmbs: "Agency Commercial Mortgage-Backed Securities",
-  tips: "US Treasury Inflation-Protected Securities (TIPS)",
-  frn: "US Treasury Floating Rate Notes",
-  notesbonds: "US Treasury Notes and Bonds (Notes/Bonds)",
-  bills: "US Treasury Bills (T-Bills)",
-  agencies: "Federal Agency Securities",
-  tipsInflationCompensation: "Inflation Compensation",
-  total: "Total SOMA Holdings",
-};
+
 export const US_ALL_ETF = [
     'VTI',
     'DIA',
@@ -293,8 +269,6 @@ export const DASHBOARD_LEFT_TWO = [
   {text: "Agriculture", data: DASHBOARD_AGRICULTURE, i18n: 'dashboard.category.agriculture'},
 ]
 
-export const TREASURY_REAL_RATES_FIELD = ['5 YR', '7 YR', '10 YR', '20 YR', '30 YR']
-export const SOMA_HOLD_FIELD = ['agencies', 'bills', 'cmbs', 'frn', 'mbs', 'notesbonds', 'tips', 'tipsInflationCompensation', 'total']
 export const DASHBOARD_BM = US_ALL_ETF[0]
 export const ETF_URI_PREFIX = "/api-storage/etf/"
 export const DATA_SET = new DataSet()

@@ -1,4 +1,3 @@
-import moment from 'moment';
 import Base64 from 'base-64';
 
 import * as constants  from "@/constants";

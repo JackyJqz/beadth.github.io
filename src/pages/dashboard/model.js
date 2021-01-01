@@ -1,5 +1,4 @@
 import * as service from './service';
-import * as constants from "@/constants";
 import * as bin from "@/pages/dashboard/utils/bin";
 
 const initState = {
@@ -10,8 +9,8 @@ const initState = {
 const Model = {
   namespace: 'dashboard',
   state: initState,
-  effects:{
-    *init(_, { put }) {
+  effects: {
+    * init(_, {put}) {
       yield put({
         type: 'etf',
       });
@@ -19,14 +18,14 @@ const Model = {
         type: 'fetchLeft',
       });
     },
-    *etf(_, { call, put }) {
+    * etf(_, {call, put}) {
       const response = yield call(service.getETFs);
       yield put({
         type: 'save',
         payload: bin.etfFormat(response),
       });
     },
-    *fetchLeft(_, { call, put }) {
+    * fetchLeft(_, {call, put}) {
       const response = yield call(service.getBoardLeft);
       yield put({
         type: 'save',
@@ -34,9 +33,9 @@ const Model = {
       });
     },
   },
-  reducers:{
-    save(state, { payload }) {
-      return { ...state, ...payload };
+  reducers: {
+    save(state, {payload}) {
+      return {...state, ...payload};
     },
     clear() {
       return initState;

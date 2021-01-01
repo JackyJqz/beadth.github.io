@@ -1,14 +1,5 @@
-
-import {Avatar, Card, Col, List, Skeleton, Row, Statistic, Spin, Table} from 'antd';
-import React, {Suspense} from 'react';
-import {
-  Chart,
-  Line,
-  Area,
-  Annotation,
-} from 'bizcharts';
-
-// import styles from './style.less';
+import React from 'react';
+import {Card, Col, Row, Table} from 'antd';
 
 import * as constants from "@/constants";
 import * as utils from "@/pages/dashboard/utils/utils";
@@ -87,7 +78,6 @@ const Left = ({loading,}) => {
     <React.Fragment>
       {
         constants.DASHBOARD_LEFT_ONE.map((item, index) => {
-          let titleKey = 'dashboardTitle' + index
           let tableKey = 'dashboardTable' + index
           let itemData = itemDataFunc(item)
 

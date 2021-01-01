@@ -7,8 +7,6 @@ import {
   Annotation,
 } from 'bizcharts';
 
-import styles from './style.less';
-
 import * as constants from "@/constants";
 import * as utils from "@/pages/dashboard/utils/utils";
 import {FormattedMessage} from "umi";

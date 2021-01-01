@@ -15,7 +15,7 @@
     <meta
       name="description"
       content="
-      breadth.app 是收集统计美股市场宽度的网站。交易日市场数据每1-2小时更新一次，建议收藏。Market Breadth。"
+      breadth.app 是收集统计美股市场宽度和经济的网站。交易日宽度数据每1-2小时更新一次，建议收藏。Market Breadth。"
     />
     <meta
       name="viewport"
@@ -23,6 +23,17 @@
     />
     <title>Market Breadth</title>
     <link rel="icon" href="<%= context.config.publicPath +'favicon.ico'%>" type="image/x-icon" />
+    <!-- Google AdSense -->
+    <script data-ad-client="ca-pub-4591066989979284" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XJLPLKGPCG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-XJLPLKGPCG');
+    </script>
   </head>
   <body>
     <noscript>Out-of-the-box mid-stage front/design solution!</noscript>
@@ -190,7 +201,7 @@
           min-height: 420px;
         "
       >
-        <img src="<%= context.config.publicPath +'pro_icon.svg'%>" alt="logo" width="256" />
+        <!--<img src="<%= context.config.publicPath +'favicon-96x96.png'%>" alt="logo" width="256" />-->
         <div class="page-loading-warp">
           <div class="ant-spin ant-spin-lg ant-spin-spinning">
             <span class="ant-spin-dot ant-spin-dot-spin"
@@ -201,7 +212,7 @@
         </div>
         <div style="display: flex; align-items: center; justify-content: center">
           <img
-            src="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg"
+            src="/favicon-96x96.png"
             width="32"
             style="margin-right: 8px"
           />

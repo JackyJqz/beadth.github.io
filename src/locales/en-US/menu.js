@@ -1,6 +1,8 @@
 export default {
   'menu.breadth': 'Breadth',
-  'menu.economy': 'Economy',
+  'menu.economic': 'Economic Data',
+  'menu.economic.economic-basic': 'Economic Basic',
+  'menu.economic.macroeconomics': 'Abstract Macroeconomics',
   'menu.market-dashboard': 'Market Dashboard',
   'menu.welcome': 'Welcome',
   'menu.more-blocks': 'More Blocks',

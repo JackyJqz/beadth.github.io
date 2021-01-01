@@ -10,8 +10,6 @@ import {
   Point,
   Annotation,
   Slider,
-  BarChart,
-  HistogramChart,
   Coordinate,
   Interval
 } from 'bizcharts';
@@ -65,10 +63,7 @@ const BreadthLine = ({date, data}) => {
       <h5 className='sub-title' style={styles.subTitle}>
         {date}
       </h5>
-      <Chart title={{
-        visible: true,
-        text: '面积图',
-      }} scale={scale} padding={[10, 20, 40, 40]} autoFit height={220} data={data}>
+      <Chart scale={scale} padding={[10, 20, 40, 40]} autoFit height={220} data={data}>
         <Annotation.Text {...constants.CHART_COPYRIGHT}/>
         <Axis name="breadth" grid={grid}/>
         <Axis name="day" label={null}/>
@@ -147,17 +142,6 @@ const LastDayBreadth = ({data}) => {
 
   return (
     <Card style={{marginBottom: 10}}>
-      {/*<BarChart data={data}*/}
-      {/*          title={{*/}
-      {/*            visible: false,*/}
-      {/*            text: '当日',*/}
-      {/*          }}*/}
-      {/*          forceFit="auto"*/}
-
-      {/*          xField='value'*/}
-      {/*          yField='code'>*/}
-
-      {/*</BarChart>*/}
       <Chart height={283} data={data} autoFit>
         <Coordinate transpose />
         <Interval position="code*value" />

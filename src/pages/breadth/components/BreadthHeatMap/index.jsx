@@ -1,18 +1,13 @@
 import React from "react";
 import {Card,Row,Col} from "antd";
-import {useIntl, FormattedMessage} from 'umi';
+import {useIntl} from 'umi';
 
 import {
   Chart,
   Tooltip,
   Legend,
   Axis,
-  Interaction,
   Polygon,
-  Line,
-  Point,
-  Annotation,
-  Slider,
 } from 'bizcharts';
 
 import * as constants from "@/constants";

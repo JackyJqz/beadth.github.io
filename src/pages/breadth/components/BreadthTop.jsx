@@ -2,7 +2,6 @@ import React from 'react';
 import {InfoCircleOutlined} from '@ant-design/icons';
 import {Col, Row, Tooltip} from 'antd';
 import {FormattedMessage} from 'umi';
-import numeral from 'numeral';
 
 import styles from '../style.less';
 import Trend from './Trend';

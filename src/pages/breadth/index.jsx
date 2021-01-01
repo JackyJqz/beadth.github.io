@@ -1,6 +1,6 @@
 import React, {PureComponent, Suspense} from 'react';
-import { connect } from 'umi';
-import { GridContent } from '@ant-design/pro-layout';
+import {connect} from 'umi';
+import {GridContent} from '@ant-design/pro-layout';
 // import {CHART_CODE_LIST} from "@/pages/constants";
 
 import PageLoading from './components/PageLoading';
@@ -9,14 +9,14 @@ const BreadthTop = React.lazy(() => import('./components/BreadthTop'));
 const BreadthTrend = React.lazy(() => import('./components/BreadthTrend'));
 const BreadthHeatMap = React.lazy(() => import('./components/BreadthHeatMap'));
 
-class Breadth extends PureComponent{
+class Breadth extends PureComponent {
 
   reqRef = 0;
 
   timeoutId = 0;
 
   componentDidMount() {
-    const { dispatch } = this.props;
+    const {dispatch} = this.props;
     this.reqRef = requestAnimationFrame(() => {
       dispatch({
         type: 'breadth/fetch',
@@ -25,7 +25,7 @@ class Breadth extends PureComponent{
   }
 
   componentWillUnmount() {
-    const { dispatch } = this.props;
+    const {dispatch} = this.props;
     dispatch({
       type: 'breadth/clear',
     });
@@ -41,7 +41,7 @@ class Breadth extends PureComponent{
       breadthDateRange,
       lineDataList,
       lastAllBreadh,
-      } = this.props;
+    } = this.props;
     // const {
     //   dataList,
     //   totalLList,
@@ -59,17 +59,17 @@ class Breadth extends PureComponent{
     return (
       <GridContent>
         <React.Fragment>
-          <Suspense fallback={<PageLoading />}>
+          <Suspense fallback={<PageLoading/>}>
             <BreadthTop {...this.props} />
           </Suspense>
-          <Suspense fallback={<PageLoading />}>
+          <Suspense fallback={<PageLoading/>}>
             <BreadthTrend lastAllBreadh={lastAllBreadh} date={breadthDateRange} data={lineDataList}/>
           </Suspense>
-          <Suspense fallback={<PageLoading />}>
+          <Suspense fallback={<PageLoading/>}>
             {
               loading
-                ?<PageLoading/>
-                :<BreadthHeatMap
+                ? <PageLoading/>
+                : <BreadthHeatMap
                   heatMapDataLeft={heatMapDataLeft}
                   heatMapDataRight={heatMapDataRight}
                 />
@@ -84,9 +84,10 @@ class Breadth extends PureComponent{
 
 const mapStateToProps = (state) => {
   return {
-  ...state.breadth,
-  loading: state.loading.effects['breadth/fetch'],
-}}
+    ...state.breadth,
+    loading: state.loading.effects['breadth/fetch'],
+  }
+}
 
 
 // export default connect(
