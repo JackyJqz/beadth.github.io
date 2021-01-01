@@ -12,20 +12,17 @@ import MiniProgress from "./MiniProgress"
 import {USSP_MAX_BREADTH} from "@/pages/constants";
 
 const topColResponsiveProps = {
-  xs: 12,
-  sm: 12,
+  xs: 24,
+  sm: 24,
   md: 12,
   lg: 12,
   xl: 12,
   style: {
-    marginBottom: 24,
+    marginBottom: 10,
   },
 };
 
-const BreadthRow = (props) => {
-  const {
-    loading, lastBreadth, preBreadth, openBreadth
-  } = props
+const BreadthRow = ({loading, lastBreadth, preBreadth, openBreadth}) => {
 
   const dayPa = (lastBreadth - preBreadth)/preBreadth * 100
   const lastPa = (lastBreadth / USSP_MAX_BREADTH *100).toFixed(1)

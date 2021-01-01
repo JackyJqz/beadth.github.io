@@ -13,7 +13,10 @@ const initState = {
   breadthDays: 100,
   lastBreadth: 0,
   lastTime: '',
+  bdv: undefined,
   breadthDateRange: [],
+  heatMapDataLeft: [],
+  heatMapDataRight:[],
 }
 
 const Model = {

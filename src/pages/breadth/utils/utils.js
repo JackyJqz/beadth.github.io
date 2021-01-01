@@ -1,7 +1,9 @@
 import moment from 'moment';
 import Base64 from 'base-64';
+import DataSet from '@antv/data-set';
 
-import {CHART_CODE_LIST} from "../constants";
+import * as constants from "@/constants";
+import * as Gutils from "@/utils/utils";
 
 export function fixedZero(val) {
   return val * 1 < 10 ? `0${val}` : val;
@@ -50,10 +52,10 @@ export function getTimeDistance(type) {
 }
 
 export function breadthFormat(srcData) {
+  var bds = constants.DATA_SET
   // 数据处理
   const data = JSON.parse(Base64.decode(srcData.data))
 
-  console.log("breadthFormat sstart ，", data)
   const lastTime = srcData.last_time
   const dayList = [];
   const totalList = [];
@@ -67,7 +69,56 @@ export function breadthFormat(srcData) {
   const lastBreadth = Math.ceil(data[data.length-1].TOTAL)
   const openBreadth = Math.ceil(data[data.length-1].OPEN_TOTAL)
   const preBreadth = Math.ceil(data[data.length-2].TOTAL)
-  const ret = {
+
+  /* 已经不想动这个，不知道当时写的什么玩意儿  papok start */
+  for (var i = 0; i < data.length; i++) {
+    for (var key in data[i].data) {
+      if (data[i].data[key]['close'] === 0.01) {
+        data[i].data[key]['close'] = 0
+      }
+      data[i].data[key]['close'] = Math.ceil(data[i].data[key]['close'])
+      data[i][key] = data[i].data[key]['close'];
+    }
+    data[i]['TOTAL'] = Math.ceil(data[i]['TOTAL'])
+    lineDataList.push({day: data[i]['time'], code: "TOTAL", breadth: Math.ceil(data[i]['TOTAL'])})
+  }
+  /* end */
+  const ldv = new DataSet.DataView().source(data)
+  const rdv = new DataSet.DataView().source(data)
+
+  ldv.transform({
+    type: 'fold',
+    fields: constants.CHART_CODE_LIST, // 展开字段集
+    key: 'code', // key字段
+    value: 'value', // value字段
+    // retains: [ 'data', 'OPEN_TOTAL', 'HIGH_TOTAL', 'LOW_TOTAL']
+  })
+
+  rdv.transform({
+    type: 'fold',
+    fields: ['TOTAL',], // 展开字段集
+    key: 'code', // key字段
+    value: 'value', // value字段
+    // retains: [ 'data', 'OPEN_TOTAL', 'HIGH_TOTAL', 'LOW_TOTAL']
+  })
+
+  var lastBreadhdv = new DataSet.DataView().source([
+    deleteItem(ldv.origin[ldv.origin.length-1], constants.SP500_POP_FIELD)
+  ])
+  lastBreadhdv.transform({
+    type: 'fold',
+    fields: constants.CHART_CODE_LIST, // 展开字段集
+    key: 'code', // key字段
+    value: 'value', // value字段
+    // retains: constants.SP500_POP_FIELD
+  })
+
+  var lastAllBreadh = lastBreadhdv.rows
+  var heatMapDataLeft = ldv.rows
+  var heatMapDataRight = rdv.rows
+
+
+  return {
     dataList,
     totalList,
     dayList,
@@ -78,7 +129,16 @@ export function breadthFormat(srcData) {
     lastBreadth,
     openBreadth,
     preBreadth,
+    bds,
+    heatMapDataLeft,
+    heatMapDataRight,
+    lastAllBreadh,
   }
-  console.log(ret)
-  return ret
+}
+
+export function deleteItem(data, items){
+  for (var i=0; i<items.length; i++){
+    delete data[items[i]]
+  }
+  return data
 }

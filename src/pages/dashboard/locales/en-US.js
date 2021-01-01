@@ -1,0 +1,16 @@
+export default {
+  'dashboard.category.broad-market': 'Broad Market',
+  'dashboard.category.factors': 'Factors',
+  'dashboard.category.growth-value': 'Growth ot Value',
+  'dashboard.category.thematic': 'Thematic',
+  'dashboard.category.industry': 'Industry',
+  'dashboard.category.rates-yields': 'Rates Yields',
+  'dashboard.category.supply-Demand': 'Supply & Demand',
+  'dashboard.category.fundamental': 'Fundamental',
+  'dashboard.category.risk-gauges': 'Risk Gauges',
+  'dashboard.category.currency': 'Currency',
+  'dashboard.category.energy': 'Energy',
+  'dashboard.category.precious': 'Precious',
+  'dashboard.category.metal': 'Metal',
+  'dashboard.category.agriculture': 'Agriculture',
+};

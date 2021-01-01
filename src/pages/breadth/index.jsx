@@ -5,7 +5,9 @@ import { GridContent } from '@ant-design/pro-layout';
 
 import PageLoading from './components/PageLoading';
 
-const BreadthRow = React.lazy(() => import('./components/BreadthRow'));
+const BreadthTop = React.lazy(() => import('./components/BreadthTop'));
+const BreadthTrend = React.lazy(() => import('./components/BreadthTrend'));
+const BreadthHeatMap = React.lazy(() => import('./components/BreadthHeatMap'));
 
 class Breadth extends PureComponent{
 
@@ -32,8 +34,14 @@ class Breadth extends PureComponent{
   }
 
   render() {
-    const {breadthData, loading} = this.props;
-    console.log('breadthData: ', breadthData, loading)
+    const {
+      heatMapDataLeft,
+      heatMapDataRight,
+      loading,
+      breadthDateRange,
+      lineDataList,
+      lastAllBreadh,
+      } = this.props;
     // const {
     //   dataList,
     //   totalLList,
@@ -50,11 +58,24 @@ class Breadth extends PureComponent{
     // } = breadthData;
     return (
       <GridContent>
-      <React.Fragment>
-        <Suspense fallback={<PageLoading />}>
-          <BreadthRow {...this.props} />
-        </Suspense>
-      </React.Fragment>
+        <React.Fragment>
+          <Suspense fallback={<PageLoading />}>
+            <BreadthTop {...this.props} />
+          </Suspense>
+          <Suspense fallback={<PageLoading />}>
+            <BreadthTrend lastAllBreadh={lastAllBreadh} date={breadthDateRange} data={lineDataList}/>
+          </Suspense>
+          <Suspense fallback={<PageLoading />}>
+            {
+              loading
+                ?<PageLoading/>
+                :<BreadthHeatMap
+                  heatMapDataLeft={heatMapDataLeft}
+                  heatMapDataRight={heatMapDataRight}
+                />
+            }
+          </Suspense>
+        </React.Fragment>
       </GridContent>
 
     )

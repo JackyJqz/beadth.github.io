@@ -57,7 +57,7 @@ class AvatarDropdown extends React.Component {
     return currentUser && currentUser.name ? (
       <HeaderDropdown overlay={menuHeaderDropdown}>
         <span className={`${styles.action} ${styles.account}`}>
-          <span className={`${styles.name} anticon`}>已登陆</span>
+          {/*<span className={`${styles.name} anticon`}>{currentUser.name}</span>*/}
         </span>
       </HeaderDropdown>
     ) : (

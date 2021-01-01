@@ -1,4 +1,5 @@
 import {DataSet} from "@antv/data-set/lib/data-set";
+import {FormattedMessage} from 'umi';
 
 export const USSP_MAX_BREADTH = 1100
 export const ALI_PAY_QR = "/img/AliPayQR.png"
